@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [HideInInspector] public UpdateManager updateManager;
+    [HideInInspector] public UpdateManager updateManager { private set; get; }
+    [HideInInspector] public Model model { private set; get; }
 
     private bool gamePaused = false;
     
@@ -19,6 +21,7 @@ public class GameManager : MonoBehaviour
         Instance = this;
         
         updateManager = GetComponent<UpdateManager>();
+        model = FindObjectOfType<Model>();
     }
 
     private void Update()
@@ -26,5 +29,12 @@ public class GameManager : MonoBehaviour
         if (gamePaused) return;
         
         updateManager.OnUpdate();
+    }
+
+    private void LateUpdate()
+    {
+        if (gamePaused) return;
+        
+        updateManager.OnLateUpdate();
     }
 }
