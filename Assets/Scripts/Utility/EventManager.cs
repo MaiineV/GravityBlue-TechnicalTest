@@ -16,6 +16,16 @@ public static class EventManager
         else
             _events[eventType] += method;
     }
+    
+    public static void Subscribe(EventName eventType, EventReceiver method)
+    {
+        var eventName = eventType.ToString();
+        
+        if (!_events.ContainsKey(eventName))
+            _events.Add(eventName, method);
+        else
+            _events[eventName] += method;
+    }
 
     public static void UnSubscribe(string eventType, EventReceiver method)
     {

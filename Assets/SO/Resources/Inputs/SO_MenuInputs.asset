@@ -12,5 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a639964025c0dc543b40cee72434a5d5, type: 3}
   m_Name: SO_MenuInputs
   m_EditorClassIdentifier: 
+  ControllerName: 1
   inputs:
-    _serializedList: []
+    _serializedList:
+    - Key: 0
+      Value:
+        InputType: 0
+        EventName: 0

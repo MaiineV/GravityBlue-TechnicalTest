@@ -1,6 +1,8 @@
 public enum EventName
 {
-    
+    UpdateVAxis,
+    UpdateHAxis,
+    Interact
 }
 
 public enum ControllerName
@@ -19,5 +21,7 @@ public enum InputType
 
 public enum InputName
 {
-    
+    Horizontal,
+    Vertical,
+    Interact
 }

@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public UpdateManager updateManager;
+    [HideInInspector] public UpdateManager updateManager;
 
     private bool gamePaused = false;
     
