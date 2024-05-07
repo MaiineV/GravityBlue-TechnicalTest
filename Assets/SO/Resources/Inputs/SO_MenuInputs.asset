@@ -15,7 +15,7 @@ MonoBehaviour:
   ControllerName: 1
   inputs:
     _serializedList:
-    - Key: 0
+    - Key: 4
       Value:
         InputType: 0
-        EventName: 0
+        EventName: 6

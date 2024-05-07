@@ -27,3 +27,11 @@ MonoBehaviour:
       Value:
         InputType: 0
         EventName: 2
+    - Key: 3
+      Value:
+        InputType: 0
+        EventName: 4
+    - Key: 4
+      Value:
+        InputType: 0
+        EventName: 5

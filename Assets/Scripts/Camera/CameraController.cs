@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
     {
         player = GameManager.Instance.model;
 
-        GameManager.Instance.updateManager.AddLateUpdate(OnLateUpdate);
+        GameManager.Instance.UpdateManager.AddLateUpdate(OnLateUpdate);
 
         transform.position =
             new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);

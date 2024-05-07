@@ -16,7 +16,7 @@ public class Model : MonoBehaviour
     
     private void Awake()
     {
-        GameManager.Instance.updateManager.AddUpdate(OnUpdate);
+        GameManager.Instance.UpdateManager.AddUpdate(OnUpdate);
 
         _rb = GetComponent<Rigidbody2D>();
         
@@ -38,6 +38,11 @@ public class Model : MonoBehaviour
         EventManager.Subscribe(EventName.UpdateHAxis, UpdateHAxis);
         EventManager.Subscribe(EventName.UpdateVAxis, UpdateVAxis);
         EventManager.Subscribe(EventName.Interact, Interact);
+        
+        EventManager.Subscribe(EventName.TurnOnPause, ChangeToMenuController);
+        EventManager.Subscribe(EventName.TurnOnInventory, ChangeToMenuController);
+        
+        EventManager.Subscribe(EventName.ReturnGameMode, ChangeToGameController);
     }
 
     private void OnUpdate()
@@ -65,6 +70,16 @@ public class Model : MonoBehaviour
             Vector2.Distance(x.transform.position, transform.position)).First();
 
         closest.gameObject.GetComponent<IInteractable>()?.Interact(this);
+    }
+
+    private void ChangeToMenuController(params object[] parameters)
+    {
+        _activeController = _possibleControllers[ControllerName.InMenu];
+    }
+
+    private void ChangeToGameController(params object[] parameters)
+    {
+        _activeController = _possibleControllers[ControllerName.InGame];
     }
 
     private void OnTriggerEnter2D(Collider2D other)

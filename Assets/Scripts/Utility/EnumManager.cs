@@ -2,7 +2,12 @@ public enum EventName
 {
     UpdateVAxis,
     UpdateHAxis,
-    Interact
+    Interact,
+    TurnOnUI,
+    TurnOnInventory,
+    TurnOnPause,
+    TurnOffUI,
+    ReturnGameMode
 }
 
 public enum ControllerName
@@ -23,5 +28,16 @@ public enum InputName
 {
     Horizontal,
     Vertical,
-    Interact
+    Interact,
+    Inventory,
+    Cancel,
+}
+
+public enum Screens
+{
+    Hud,
+    Store,
+    Inventory,
+    Work,
+    Pause
 }

@@ -5,7 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [HideInInspector] public UpdateManager updateManager { private set; get; }
+    [HideInInspector] public UpdateManager UpdateManager { private set; get; }
+    [HideInInspector] public UIManager UIManager { private set; get; }
     [HideInInspector] public Model model { private set; get; }
 
     private bool gamePaused = false;
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         
-        updateManager = GetComponent<UpdateManager>();
+        UpdateManager = GetComponent<UpdateManager>();
+        UIManager = GetComponentInChildren<UIManager>();
         model = FindObjectOfType<Model>();
     }
 
@@ -28,13 +30,13 @@ public class GameManager : MonoBehaviour
     {
         if (gamePaused) return;
         
-        updateManager.OnUpdate();
+        UpdateManager.OnUpdate();
     }
 
     private void LateUpdate()
     {
         if (gamePaused) return;
         
-        updateManager.OnLateUpdate();
+        UpdateManager.OnLateUpdate();
     }
 }
