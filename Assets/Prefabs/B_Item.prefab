@@ -88,6 +88,7 @@ GameObject:
   - component: {fileID: 3002199521146756103}
   - component: {fileID: 3002199521146756152}
   - component: {fileID: 3002199521146756153}
+  - component: {fileID: 4601614589162881115}
   m_Layer: 0
   m_Name: B_Item
   m_TagString: Untagged
@@ -197,4 +198,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3002199521146756152}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4601614589162881115}
+        m_TargetAssemblyTypeName: UIItem, Assembly-CSharp
+        m_MethodName: OnPressButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4601614589162881115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3002199521146756155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23dd94cc6bec40e4b9170c34a8ae3452, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _itemImage: {fileID: 3002199520372439865}
+  _maxXIndex: 5
+  _maxYIndex: 4
