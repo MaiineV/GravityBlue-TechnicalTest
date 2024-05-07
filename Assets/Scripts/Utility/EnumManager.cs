@@ -7,7 +7,7 @@ public enum EventName
     TurnOnInventory,
     TurnOnPause,
     TurnOffUI,
-    ReturnGameMode
+    ReturnGameMode,
 }
 
 public enum ControllerName
@@ -40,4 +40,15 @@ public enum Screens
     Inventory,
     Work,
     Pause
+}
+
+public enum ItemType
+{
+    Ore,
+    
+}
+
+public enum BodyPart
+{
+    
 }

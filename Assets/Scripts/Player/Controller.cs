@@ -42,7 +42,7 @@ public class Controller
                 case InputType.Axie:
                     OnUpdate += () =>
                     {
-                        var axis = Input.GetAxis(inputName);
+                        var axis = Input.GetAxisRaw(inputName);
                         EventManager.Trigger(inputPair.Value.EventName, axis);
                     };
                     break;

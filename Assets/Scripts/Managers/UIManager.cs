@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
         EventManager.Subscribe(EventName.TurnOffUI, TurnOffLastScreen);
     }
 
+    #region Screens Zone
 
     private void TurnOnScreen(params object[] parameters)
     {
@@ -65,4 +66,8 @@ public class UIManager : MonoBehaviour
         possibleScreens[Screens.Pause].SetActive(true);
         _screenStack.Push(possibleScreens[Screens.Pause]);
     }
+
+    #endregion
+
+    
 }
