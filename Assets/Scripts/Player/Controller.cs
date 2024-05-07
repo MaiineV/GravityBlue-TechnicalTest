@@ -1,18 +1,27 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Controller
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private Model _model;
 
-    // Update is called once per frame
-    void Update()
+    public Action OnUpdate = delegate {  };
+    
+    public Controller(SO_Inputs soSoInputs, Model model)
     {
-        
+        _model = model;
+
+        foreach (var inputPair in soSoInputs.inputs)
+        {
+            OnUpdate += () =>
+            {
+                if (Input.GetKeyDown(inputPair.Key))
+                {
+                    EventManager.Trigger(inputPair.Value);
+                }
+            };
+        }
     }
 }

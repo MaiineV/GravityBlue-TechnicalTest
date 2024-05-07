@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Model : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Dictionary<ControllerName, Controller> _possibleControllers;
+    private Controller _activeController;
+    
+    private void Awake()
     {
-        
+        var controllers = Resources.LoadAll<SO_Inputs>("Inputs");
+
+        foreach (var controller in controllers)
+        {
+            if (_possibleControllers.ContainsKey(controller.ControllerName)) continue;
+            
+            _possibleControllers.Add(controller.ControllerName, new Controller(controller, this));
+        }
+
+        _activeController = _possibleControllers[ControllerName.InGame];
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        _activeController.OnUpdate();
     }
 }

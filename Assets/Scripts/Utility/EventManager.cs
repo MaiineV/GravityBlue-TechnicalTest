@@ -33,6 +33,14 @@ public static class EventManager
         if (_events.ContainsKey(eventType))
             _events[eventType](parameters);
     }
+    
+    public static void Trigger(EventName eventType, params object[] parameters)
+    {
+        var name = eventType.ToString();
+        
+        if (_events.ContainsKey(name))
+            _events[name](parameters);
+    }
 
     public static void ResetEventDictionary()
     {
