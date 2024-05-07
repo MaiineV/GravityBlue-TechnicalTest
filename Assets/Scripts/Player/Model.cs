@@ -9,6 +9,10 @@ public class Model : MonoBehaviour
     
     private void Awake()
     {
+        GameManager.Instance.updateManager.AddUpdate(OnUpdate);
+        
+        #region Controller Init
+
         var controllers = Resources.LoadAll<SO_Inputs>("Inputs");
 
         foreach (var controller in controllers)
@@ -19,9 +23,11 @@ public class Model : MonoBehaviour
         }
 
         _activeController = _possibleControllers[ControllerName.InGame];
+
+        #endregion
     }
 
-    void Update()
+    private void OnUpdate()
     {
         _activeController.OnUpdate();
     }
