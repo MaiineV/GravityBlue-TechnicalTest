@@ -1,18 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class View : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Animator _animator;
+    private float initXScale;
+
+    private void Awake()
     {
-        
+        _animator = GetComponent<Animator>();
+        EventManager.Subscribe(EventName.UpdateHAxis, UpdateHAxis);
+        EventManager.Subscribe(EventName.UpdateVAxis, UpdateVAxis);
+        initXScale = transform.localScale.x;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateHAxis(params object[] parameters)
     {
-        
+        var axis = (float)parameters[0];
+        _animator.SetFloat("Horizontal", axis);
+
+        transform.localScale =
+            new Vector3(axis >= 0 ? initXScale : -initXScale, transform.localScale.y, transform.localScale.z);
+    }
+
+    private void UpdateVAxis(params object[] parameters)
+    {
+        _animator.SetFloat("Vertical", (float)parameters[0]);
     }
 }

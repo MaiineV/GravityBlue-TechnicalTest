@@ -13,6 +13,8 @@ public class Model : MonoBehaviour
     private Inventory _inventory;
     private Vector3 _actualDir = Vector3.zero;
 
+    [SerializeField] private float _speed;
+
     private readonly HashSet<Collider2D> _interactableOnRange = new();
     
     private void Awake()
@@ -54,7 +56,7 @@ public class Model : MonoBehaviour
     {
         _activeController.OnUpdate();
 
-       _rb.velocity = _actualDir;
+       _rb.velocity = _actualDir.normalized * _speed;
     }
 
     private void UpdateVAxis(params object[] parameters)
@@ -79,8 +81,9 @@ public class Model : MonoBehaviour
 
     private void ChangeToMenuController(params object[] parameters)
     {
-        _actualDir = Vector3.zero;
         _activeController = _possibleControllers[ControllerName.InMenu];
+        EventManager.Trigger(EventName.UpdateHAxis, 0f);
+        EventManager.Trigger(EventName.UpdateVAxis, 0f);
     }
 
     private void ChangeToGameController(params object[] parameters)
