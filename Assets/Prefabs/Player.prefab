@@ -1190,7 +1190,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.24, y: 10.24}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1632,6 +1632,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1956042907aafe34b9ca9a0f058f5db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyParts:
+    _serializedList:
+    - Key: 0
+      Value:
+      - {fileID: 945845946242228087}
+    - Key: 1
+      Value:
+      - {fileID: 945845949428384195}
+    - Key: 2
+      Value:
+      - {fileID: 945845945406934643}
+      - {fileID: 945845945579252937}
+      - {fileID: 945845946953827339}
+      - {fileID: 945845946167104429}
+      - {fileID: 945845945383190961}
+      - {fileID: 945845947399673151}
+    - Key: 3
+      Value:
+      - {fileID: 945845947606894637}
+      - {fileID: 945845945562064137}
+      - {fileID: 945845945639308535}
+      - {fileID: 945845946471167821}
+      - {fileID: 945845946638330561}
 --- !u!1 &1140238100854879351
 GameObject:
   m_ObjectHideFlags: 0

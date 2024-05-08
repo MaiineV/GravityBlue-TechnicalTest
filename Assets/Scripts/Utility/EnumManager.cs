@@ -46,10 +46,14 @@ public enum ItemType
 {
     Ore,
     Object,
-    Food
+    Food,
+    Equipment
 }
 
 public enum BodyPart
 {
-    
+    Head,
+    Body,
+    Hands,
+    Legs
 }

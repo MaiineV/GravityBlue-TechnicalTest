@@ -14,9 +14,11 @@ public class SO_Item : ScriptableObject
     [Serializable]
     public struct EquippedInfo
     {
-        public Sprite equippedSprite;
+        public Sprite[] equippedSprite;
         public BodyPart bodyPart;
     }
+
+    public EquippedInfo equippedInfo;
     
     public int buyCost;
     public int sellCost;

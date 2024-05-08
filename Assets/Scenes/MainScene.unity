@@ -12569,6 +12569,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5656781055437685949, guid: 0fc6da361db32384e8a8b0267cc905c1, type: 3}
+      propertyPath: testItem
+      value: 
+      objectReference: {fileID: 11400000, guid: ef5d1cc390ffe6c448326e399640bec1, type: 2}
+    - target: {fileID: 5656781055437685949, guid: 0fc6da361db32384e8a8b0267cc905c1, type: 3}
       propertyPath: _uiInvetory
       value: 
       objectReference: {fileID: 1872527701}

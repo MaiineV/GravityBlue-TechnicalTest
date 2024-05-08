@@ -1,12 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public class View : MonoBehaviour
 {
     private Animator _animator;
     private float initXScale;
+    
+    [SerializedDictionary("Sprite Name", "Sprite Renderer")]
+    public SerializedDictionary<BodyPart, SpriteRenderer[]> bodyParts;
 
     private void Awake()
     {

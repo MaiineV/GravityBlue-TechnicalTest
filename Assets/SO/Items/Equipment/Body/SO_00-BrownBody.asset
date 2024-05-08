@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6dc2dc90b1d16b3479a9a6f203421043, type: 3}
-  m_Name: SO_Crown
+  m_Name: SO_00-BrownBody
   m_EditorClassIdentifier: 
-  itemName: Crown
-  ItemType: 1
+  itemName: Brown Body
+  ItemType: 3
   canBeEquipped: 1
-  inventoryImage: {fileID: 21300000, guid: f30c689e1cd8caa45a28c4947f382374, type: 3}
+  inventoryImage: {fileID: 21300000, guid: 215dd6c48c732d744aecd29e7fecbbfa, type: 3}
   equippedInfo:
-    equippedSprite: []
-    bodyPart: 0
-  buyCost: 200
-  sellCost: 150
+    equippedSprite:
+    - {fileID: 21300000, guid: 215dd6c48c732d744aecd29e7fecbbfa, type: 3}
+    bodyPart: 1
+  buyCost: 20
+  sellCost: 15
