@@ -8,6 +8,7 @@ public enum EventName
     TurnOnPause,
     TurnOffUI,
     ReturnGameMode,
+    ChangeCloth
 }
 
 public enum ControllerName

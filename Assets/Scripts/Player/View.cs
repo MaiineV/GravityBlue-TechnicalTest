@@ -17,6 +17,7 @@ public class View : MonoBehaviour
         _animator = GetComponent<Animator>();
         EventManager.Subscribe(EventName.UpdateHAxis, UpdateHAxis);
         EventManager.Subscribe(EventName.UpdateVAxis, UpdateVAxis);
+        EventManager.Subscribe(EventName.ChangeCloth, ChangeCloth);
         initXScale = transform.localScale.x;
     }
 
@@ -32,5 +33,16 @@ public class View : MonoBehaviour
     private void UpdateVAxis(params object[] parameters)
     {
         _animator.SetFloat("Vertical", (float)parameters[0]);
+    }
+
+    private void ChangeCloth(params object[] parameters)
+    {
+        var renderers = bodyParts[(BodyPart)parameters[0]];
+        var sprites = (Sprite[])parameters[1];
+
+        for (var i = 0; i < sprites.Length; i++)
+        {
+            renderers[i].sprite = sprites[i];
+        }
     }
 }

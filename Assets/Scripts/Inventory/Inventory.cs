@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -9,9 +10,23 @@ public class Inventory : MonoBehaviour
     [SerializeField] private UIInvetory _uiInvetory;
     [SerializeField] private UIInvetory _storeInvetory;
 
+    //Test Item
     [SerializeField] private SO_Item testItem;
 
     [SerializeField] private bool _isPlayer = true;
+
+    [SerializedDictionary("Body Part", "Equipped Item")]
+    public SerializedDictionary<BodyPart, SO_Item> equippedItems;
+
+    private void Awake()
+    {
+        if (!_isPlayer) return;
+
+        foreach (var item in equippedItems)
+        {
+            EventManager.Trigger(EventName.ChangeCloth, item.Key, item.Value.equippedInfo.equippedSprite);
+        }
+    }
 
     private void Update()
     {
@@ -51,6 +66,11 @@ public class Inventory : MonoBehaviour
         if (_isPlayer) _storeInvetory.ChangeUIImage(index, null);
     }
 
+    public void EquipItem(int index)
+    {
+        
+    }
+
     public bool HasEmptyCells()
     {
         for (var i = 0; i < 20; i++)
@@ -61,11 +81,6 @@ public class Inventory : MonoBehaviour
         }
 
         return false;
-    }
-
-    public SO_Item GetItem(int index)
-    {
-        return _inventory[index];
     }
 
     #region Collection Functions

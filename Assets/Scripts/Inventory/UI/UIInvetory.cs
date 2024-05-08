@@ -28,30 +28,37 @@ public class UIInvetory : MonoBehaviour
     public void SetPopUp(int index)
     {
         _actualIndex = index;
-        
-        var selectedItem = _inventory.GetItem(index);
+
+        var selectedItem = _inventory[index];
         _itemPopUp.gameObject.SetActive(true);
         _itemPopUp.SetInfo(selectedItem.itemName, _isPlayerInventory ? selectedItem.sellCost : selectedItem.buyCost);
-        
+
         var button = _itemPopUp.GetButton();
         if (_isShopUI)
         {
-           button.gameObject.SetActive(true);
-           
-           button.onClick.RemoveAllListeners();
+            button.gameObject.SetActive(true);
 
-           if (_isPlayerInventory)
-           {
-               button.onClick.AddListener(SellItem);
-           }
-           else
-           {
-               button.onClick.AddListener(BuyItem);
-           }
+            button.onClick.RemoveAllListeners();
+
+            if (_isPlayerInventory)
+            {
+                button.onClick.AddListener(SellItem);
+            }
+            else
+            {
+                button.onClick.AddListener(BuyItem);
+            }
         }
         else
         {
-            button.gameObject.SetActive(false);
+            if (selectedItem.canBeEquipped)
+            {
+                button.gameObject.SetActive(true);
+                button.onClick.RemoveAllListeners();
+                button.onClick.AddListener(EquipItem);
+            }
+            else
+                button.gameObject.SetActive(false);
         }
     }
 
@@ -67,39 +74,44 @@ public class UIInvetory : MonoBehaviour
 
     private void SellItem()
     {
-        var item = _inventory.GetItem(_actualIndex);
+        var item = _inventory[_actualIndex];
         _inventory.RemoveItem(_actualIndex);
-        
+
         GameManager.Instance.EconomyManager.AddGold(item.sellCost);
-        
+
         GameManager.Instance.Store.PassItem(item, false);
-        
+
         _itemPopUp.gameObject.SetActive(false);
         //TODO: Set Feedback sell
     }
 
     private void BuyItem()
     {
-        var item = _inventory.GetItem(_actualIndex);
-        
+        var item = _inventory[_actualIndex];
+
         //TODO: Set Feedback buy
-        
+
         if (GameManager.Instance.EconomyManager.HasEnoughGold(item.buyCost))
         {
             _inventory.RemoveItem(_actualIndex);
-        
+
             GameManager.Instance.EconomyManager.SubtractGold(item.sellCost);
-        
+
             GameManager.Instance.Store.PassItem(item, true);
         }
         else
         {
             Debug.Log("No money");
         }
-        
+
         _itemPopUp.gameObject.SetActive(false);
     }
-    
+
+    private void EquipItem()
+    {
+        var item = _inventory[_actualIndex];
+    }
+
     public void SetStoreOwner(Inventory newOwner)
     {
         _inventory = newOwner;
@@ -109,8 +121,8 @@ public class UIInvetory : MonoBehaviour
 
     public void CopyInfoFromInventory()
     {
-        if (_uiInventory.Length<=0) return;
-        
+        if (_uiInventory.Length <= 0) return;
+
         for (var i = 0; i < 20; i++)
         {
             _uiInventory[i].ChangeImage(_inventory[i] ? _inventory[i].inventoryImage : null);
