@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     {
         foreach (var screen in possibleScreens)
         {
+            screen.Value.SetActive(true);
             screen.Value.SetActive(false);
         }
 

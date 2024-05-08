@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class UIItem : MonoBehaviour
@@ -7,12 +8,16 @@ public class UIItem : MonoBehaviour
 
     private bool _hasItem;
 
+    [SerializeField] private bool _isEquipmentUI = false;
+
     private int _index;
 
     [SerializeField] private UIInvetory _uiInvetory;
 
     private void Awake()
     {
+        if (_isEquipmentUI) return;
+        
         _index = transform.GetSiblingIndex();
         _uiInvetory.AddUIItem(_index, this);
     }
@@ -38,6 +43,8 @@ public class UIItem : MonoBehaviour
 
     public void OnPressButton()
     {
+        if (_isEquipmentUI) return;
+        
         if (!_hasItem)
             _uiInvetory.ClosePopUp();
         else

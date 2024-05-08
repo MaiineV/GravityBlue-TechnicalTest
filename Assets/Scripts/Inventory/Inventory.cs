@@ -25,6 +25,7 @@ public class Inventory : MonoBehaviour
         foreach (var item in equippedItems)
         {
             EventManager.Trigger(EventName.ChangeCloth, item.Key, item.Value.equippedInfo.equippedSprite);
+            _uiInvetory.uiEquipment.ReplaceItem(item.Key, item.Value.inventoryImage);
         }
     }
 
@@ -68,7 +69,16 @@ public class Inventory : MonoBehaviour
 
     public void EquipItem(int index)
     {
+        var newItem = _inventory[index];
+        var lastItem = equippedItems[newItem.equippedInfo.bodyPart];
+
+        _inventory[index] = lastItem;
+        _uiInvetory.ChangeUIImage(index, lastItem.inventoryImage);
+
+        equippedItems[newItem.equippedInfo.bodyPart] = newItem;
+        _uiInvetory.uiEquipment.ReplaceItem(newItem.equippedInfo.bodyPart, newItem.inventoryImage);
         
+        EventManager.Trigger(EventName.ChangeCloth, newItem.equippedInfo.bodyPart, newItem.equippedInfo.equippedSprite);
     }
 
     public bool HasEmptyCells()

@@ -15,6 +15,8 @@ public class UIInvetory : MonoBehaviour
 
     private int _actualIndex;
 
+    public UIEquipment uiEquipment;
+
     private void OnEnable()
     {
         _itemPopUp.gameObject.SetActive(false);
@@ -109,7 +111,8 @@ public class UIInvetory : MonoBehaviour
 
     private void EquipItem()
     {
-        var item = _inventory[_actualIndex];
+       _inventory.EquipItem(_actualIndex);
+       _itemPopUp.gameObject.SetActive(false);
     }
 
     public void SetStoreOwner(Inventory newOwner)

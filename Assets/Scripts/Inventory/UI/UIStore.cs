@@ -7,9 +7,17 @@ public class UIStore : MonoBehaviour
 {
     [Header("Store Variables")] [SerializeField]
     private UIInvetory _playerUI, _storeUI;
-
+    
+    private bool _hasFirstEnable = false;
+    
     private void OnEnable()
     {
+        if (!_hasFirstEnable)
+        {
+            _hasFirstEnable = true;
+            return;
+        }
+        
         _playerUI.CopyInfoFromInventory();
         _storeUI.CopyInfoFromInventory();
     }
