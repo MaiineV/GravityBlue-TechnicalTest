@@ -1873,7 +1873,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 47.05
+  m_fontSize: 47.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3511,6 +3511,10 @@ PrefabInstance:
       propertyPath: _uiInvetory
       value: 
       objectReference: {fileID: 1872527701}
+    - target: {fileID: 4601614589162881115, guid: c1bb8f96181ccb24fb36d9ed4886ab82, type: 3}
+      propertyPath: _isEquipmentUI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4601614589162881115, guid: c1bb8f96181ccb24fb36d9ed4886ab82, type: 3}
       propertyPath: _isEquipmentdUI
       value: 1
@@ -5660,7 +5664,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.25
+  m_fontSize: 21.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7483,6 +7487,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1872527701}
     - target: {fileID: 4601614589162881115, guid: c1bb8f96181ccb24fb36d9ed4886ab82, type: 3}
+      propertyPath: _isEquipmentUI
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4601614589162881115, guid: c1bb8f96181ccb24fb36d9ed4886ab82, type: 3}
       propertyPath: _isEquipmentdUI
       value: 1
       objectReference: {fileID: 0}
@@ -7589,7 +7597,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 44.75
+  m_fontSize: 44.8
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7848,6 +7856,10 @@ PrefabInstance:
       propertyPath: _uiInvetory
       value: 
       objectReference: {fileID: 1872527701}
+    - target: {fileID: 4601614589162881115, guid: c1bb8f96181ccb24fb36d9ed4886ab82, type: 3}
+      propertyPath: _isEquipmentUI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4601614589162881115, guid: c1bb8f96181ccb24fb36d9ed4886ab82, type: 3}
       propertyPath: _isEquipmentdUI
       value: 1
@@ -8276,6 +8288,10 @@ PrefabInstance:
       propertyPath: _uiInvetory
       value: 
       objectReference: {fileID: 1872527701}
+    - target: {fileID: 4601614589162881115, guid: c1bb8f96181ccb24fb36d9ed4886ab82, type: 3}
+      propertyPath: _isEquipmentUI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4601614589162881115, guid: c1bb8f96181ccb24fb36d9ed4886ab82, type: 3}
       propertyPath: _isEquipmentdUI
       value: 1
@@ -8920,7 +8936,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45.25
+  m_fontSize: 45.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -10445,7 +10461,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.05
+  m_fontSize: 36.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -11485,7 +11501,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.2
+  m_fontSize: 36.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13102,7 +13118,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.1
+  m_fontSize: 21.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
