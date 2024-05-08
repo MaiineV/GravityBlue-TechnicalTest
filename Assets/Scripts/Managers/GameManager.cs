@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Model model { private set; get; }
 
     private bool gamePaused = false;
+
+    [SerializeField] private GameObject _randomMerchant;
     
     private void Awake()
     {
@@ -42,5 +45,12 @@ public class GameManager : MonoBehaviour
         if (gamePaused) return;
         
         UpdateManager.OnLateUpdate();
+    }
+
+    public void RollRandomMerchant()
+    {
+        var percent = Random.Range(0, 100);
+
+        _randomMerchant.SetActive(percent < 30);
     }
 }

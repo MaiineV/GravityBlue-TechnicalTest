@@ -10,9 +10,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] private UIInvetory _uiInvetory;
     [SerializeField] private UIInvetory _storeInvetory;
 
-    //Test Item
-    [SerializeField] private SO_Item testItem;
-
     [SerializeField] private bool _isPlayer = true;
 
     [SerializedDictionary("Body Part", "Equipped Item")]
@@ -26,14 +23,6 @@ public class Inventory : MonoBehaviour
         {
             EventManager.Trigger(EventName.ChangeCloth, item.Key, item.Value.equippedInfo.equippedSprite);
             _uiInvetory.uiEquipment.ReplaceItem(item.Key, item.Value.inventoryImage);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            AddItem(testItem);
         }
     }
 

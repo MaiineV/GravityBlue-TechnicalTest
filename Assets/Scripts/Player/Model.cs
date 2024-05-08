@@ -49,6 +49,8 @@ public class Model : MonoBehaviour
         EventManager.Subscribe(EventName.TurnOnInventory, ChangeToMenuController);
         EventManager.Subscribe(EventName.TurnOnUI, ChangeToMenuController);
         
+        EventManager.Subscribe(EventName.Work, ChangeToWorkController);
+        
         EventManager.Subscribe(EventName.ReturnGameMode, ChangeToGameController);
     }
 
@@ -82,6 +84,13 @@ public class Model : MonoBehaviour
     private void ChangeToMenuController(params object[] parameters)
     {
         _activeController = _possibleControllers[ControllerName.InMenu];
+        EventManager.Trigger(EventName.UpdateHAxis, 0f);
+        EventManager.Trigger(EventName.UpdateVAxis, 0f);
+    }
+    
+    private void ChangeToWorkController(params object[] parameters)
+    {
+        _activeController = _possibleControllers[ControllerName.Working];
         EventManager.Trigger(EventName.UpdateHAxis, 0f);
         EventManager.Trigger(EventName.UpdateVAxis, 0f);
     }

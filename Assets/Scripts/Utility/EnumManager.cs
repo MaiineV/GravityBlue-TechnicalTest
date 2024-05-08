@@ -8,13 +8,16 @@ public enum EventName
     TurnOnPause,
     TurnOffUI,
     ReturnGameMode,
-    ChangeCloth
+    ChangeCloth,
+    Work,
+    UpdateWorkUI
 }
 
 public enum ControllerName
 {
     InGame,
-    InMenu
+    InMenu,
+    Working
 }
 
 public enum InputType

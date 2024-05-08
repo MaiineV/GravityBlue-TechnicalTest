@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour
     private UIStore _uiStore;
 
     [Header("Gold Variable")] [SerializeField] private TMP_Text _goldAmount;
-
+    
     private void Awake()
     {
         foreach (var screen in possibleScreens)
