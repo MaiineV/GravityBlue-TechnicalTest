@@ -67,12 +67,37 @@ public class UIInvetory : MonoBehaviour
 
     private void SellItem()
     {
+        var item = _inventory.GetItem(_actualIndex);
         _inventory.RemoveItem(_actualIndex);
+        
+        GameManager.Instance.EconomyManager.AddGold(item.sellCost);
+        
+        GameManager.Instance.Store.PassItem(item, false);
+        
+        _itemPopUp.gameObject.SetActive(false);
+        //TODO: Set Feedback sell
     }
 
     private void BuyItem()
     {
+        var item = _inventory.GetItem(_actualIndex);
         
+        //TODO: Set Feedback buy
+        
+        if (GameManager.Instance.EconomyManager.HasEnoughGold(item.buyCost))
+        {
+            _inventory.RemoveItem(_actualIndex);
+        
+            GameManager.Instance.EconomyManager.SubtractGold(item.sellCost);
+        
+            GameManager.Instance.Store.PassItem(item, true);
+        }
+        else
+        {
+            Debug.Log("No money");
+        }
+        
+        _itemPopUp.gameObject.SetActive(false);
     }
     
     public void SetStoreOwner(Inventory newOwner)
@@ -80,8 +105,12 @@ public class UIInvetory : MonoBehaviour
         _inventory = newOwner;
     }
 
+    public Inventory GetInventory() => _inventory;
+
     public void CopyInfoFromInventory()
     {
+        if (_uiInventory.Length<=0) return;
+        
         for (var i = 0; i < 20; i++)
         {
             _uiInventory[i].ChangeImage(_inventory[i] ? _inventory[i].inventoryImage : null);

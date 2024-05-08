@@ -18,4 +18,13 @@ public class UIStore : MonoBehaviour
     {
         _storeUI.SetStoreOwner(inventory);
     }
+
+    public void PassItem(SO_Item newItem, bool storeToPlayer)
+    {
+        if (storeToPlayer)
+            _playerUI.GetInventory().AddItem(newItem);
+        else
+            _storeUI.GetInventory().AddItem(newItem);
+        
+    }
 }

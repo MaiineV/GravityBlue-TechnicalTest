@@ -7,10 +7,11 @@ public class Inventory : MonoBehaviour
 {
     private SO_Item[] _inventory = new SO_Item[20];
     [SerializeField] private UIInvetory _uiInvetory;
+    [SerializeField] private UIInvetory _storeInvetory;
 
     [SerializeField] private SO_Item testItem;
 
-    private bool _isPlayer = true;
+    [SerializeField] private bool _isPlayer = true;
 
     private void Update()
     {
@@ -32,8 +33,9 @@ public class Inventory : MonoBehaviour
             if (_inventory[i] != null) continue;
 
             _inventory[i] = item;
-
+            
             if (_isPlayer || _uiInvetory.isActiveAndEnabled) _uiInvetory.ChangeUIImage(i, item.inventoryImage);
+            if (_isPlayer && _storeInvetory.isActiveAndEnabled) _storeInvetory.ChangeUIImage(i, item.inventoryImage);
             
             return;
         }
@@ -45,7 +47,8 @@ public class Inventory : MonoBehaviour
 
         _inventory[index] = null;
 
-        _uiInvetory.ChangeUIImage(index);
+        _uiInvetory.ChangeUIImage(index, null);
+        if (_isPlayer) _storeInvetory.ChangeUIImage(index, null);
     }
 
     public bool HasEmptyCells()

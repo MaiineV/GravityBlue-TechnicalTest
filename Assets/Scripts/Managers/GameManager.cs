@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public UpdateManager UpdateManager { private set; get; }
     [HideInInspector] public UIManager UIManager { private set; get; }
+    [HideInInspector] public EconomyManager EconomyManager { private set; get; }
+    [HideInInspector] public UIStore Store { private set; get; }
     [HideInInspector] public Model model { private set; get; }
 
     private bool gamePaused = false;
@@ -23,6 +25,8 @@ public class GameManager : MonoBehaviour
         
         UpdateManager = GetComponent<UpdateManager>();
         UIManager = GetComponentInChildren<UIManager>();
+        EconomyManager = GetComponentInChildren<EconomyManager>();
+        Store = UIManager.GetStore();
         model = FindObjectOfType<Model>();
     }
 

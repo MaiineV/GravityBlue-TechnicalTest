@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private UIStore _uiStore;
 
-    [Header("Gold Variable")] private TMP_Text _goldAmount;
+    [Header("Gold Variable")] [SerializeField] private TMP_Text _goldAmount;
 
     private void Awake()
     {
@@ -85,4 +85,6 @@ public class UIManager : MonoBehaviour
     {
         _goldAmount.text = gold.ToString();
     }
+
+    public UIStore GetStore() => _uiStore;
 }
