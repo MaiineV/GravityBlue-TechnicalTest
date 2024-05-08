@@ -45,7 +45,8 @@ public enum Screens
 public enum ItemType
 {
     Ore,
-    
+    Object,
+    Food
 }
 
 public enum BodyPart

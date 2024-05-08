@@ -4,32 +4,17 @@ using UnityEngine.UI;
 public class UIItem : MonoBehaviour
 {
     [SerializeField] private Image _itemImage;
-    [SerializeField] private int _maxXIndex;
-    [SerializeField] private int _maxYIndex;
 
     private bool _hasItem;
 
-    private int _actualX, _actualY;
+    private int _index;
 
     [SerializeField] private UIInvetory _uiInvetory;
 
     private void Awake()
     {
-        var index = transform.GetSiblingIndex();
-
-        while (_maxXIndex * _actualY + _actualX != index)
-        {
-            _actualX++;
-
-            if (_actualX < _maxXIndex) continue;
-
-            _actualX = 0;
-            _actualY++;
-
-            if (_actualY > _maxYIndex) break;
-        }
-
-        _uiInvetory.AddUIItem(_actualX, _actualY, this);
+        _index = transform.GetSiblingIndex();
+        _uiInvetory.AddUIItem(_index, this);
     }
 
     public void ChangeImage(Sprite newImage = null)
@@ -56,6 +41,6 @@ public class UIItem : MonoBehaviour
         if (!_hasItem)
             _uiInvetory.ClosePopUp();
         else
-            _uiInvetory.SetPopUp(_actualX, _actualY);
+            _uiInvetory.SetPopUp(_index);
     }
 }

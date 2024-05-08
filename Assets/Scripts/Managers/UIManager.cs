@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -9,6 +10,12 @@ public class UIManager : MonoBehaviour
 
     [SerializedDictionary("Screen Name", "Screen Game Object")]
     public SerializedDictionary<Screens, GameObject> possibleScreens;
+
+    [Header("Store Variables")]
+    [SerializeField]
+    private UIStore _uiStore;
+
+    [Header("Gold Variable")] private TMP_Text _goldAmount;
 
     private void Awake()
     {
@@ -69,5 +76,13 @@ public class UIManager : MonoBehaviour
 
     #endregion
 
-    
+    public void SetStoreOwner(Inventory inventory)
+    {
+        _uiStore.SetStoreOwner(inventory);
+    }
+
+    public void SetGold(int gold)
+    {
+        _goldAmount.text = gold.ToString();
+    }
 }

@@ -1,12 +1,16 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    private SO_Item[,] _inventory = new SO_Item[5, 4];
+    private SO_Item[] _inventory = new SO_Item[20];
     [SerializeField] private UIInvetory _uiInvetory;
 
     [SerializeField] private SO_Item testItem;
+
+    private bool _isPlayer = true;
 
     private void Update()
     {
@@ -16,48 +20,54 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void SetOwnerState(bool isPlayer)
+    {
+        _isPlayer = isPlayer;
+    }
+
     public void AddItem(SO_Item item)
     {
-        for (var i = 0; i < 4; i++)
+        for (var i = 0; i < 20; i++)
         {
-            for (var j = 0; j < 5; j++)
-            {
-                if (_inventory[j, i] != null) continue;
+            if (_inventory[i] != null) continue;
 
-                _inventory[j, i] = item;
-                _uiInvetory.ChangeUIImage(j, i, item.inventoryImage);
-                return;
-            }
+            _inventory[i] = item;
+
+            if (_isPlayer || _uiInvetory.isActiveAndEnabled) _uiInvetory.ChangeUIImage(i, item.inventoryImage);
+            
+            return;
         }
     }
 
-    public void RemoveItem(int xIndex, int yIndex)
+    public void RemoveItem(int index)
     {
-        if (xIndex >= 5) return;
-        if (yIndex >= 4) return;
+        if (index >= 20) return;
 
-        _inventory[xIndex, yIndex] = null;
+        _inventory[index] = null;
 
-        _uiInvetory.ChangeUIImage(xIndex, yIndex);
+        _uiInvetory.ChangeUIImage(index);
     }
 
     public bool HasEmptyCells()
     {
-        for (var i = 0; i < 4; i++)
+        for (var i = 0; i < 20; i++)
         {
-            for (var j = 0; j < 5; j++)
-            {
-                if (_inventory[j, i] != null) continue;
+            if (_inventory[i] != null) continue;
 
-                return true;
-            }
+            return true;
         }
 
         return false;
     }
 
-    public SO_Item GetItem(int xIndex, int yIndex)
+    public SO_Item GetItem(int index)
     {
-        return _inventory[xIndex, yIndex];
+        return _inventory[index];
     }
+
+    #region Collection Functions
+
+    public SO_Item this[int index] => _inventory[index];
+    
+    #endregion
 }

@@ -10,6 +10,7 @@ public class Model : MonoBehaviour
     private Controller _activeController;
 
     private Rigidbody2D _rb;
+    private Inventory _inventory;
     private Vector3 _actualDir = Vector3.zero;
 
     private readonly HashSet<Collider2D> _interactableOnRange = new();
@@ -19,6 +20,9 @@ public class Model : MonoBehaviour
         GameManager.Instance.UpdateManager.AddUpdate(OnUpdate);
 
         _rb = GetComponent<Rigidbody2D>();
+        
+        _inventory = GetComponent<Inventory>();
+        _inventory.SetOwnerState(true);
         
         #region Controller Init
 
@@ -41,6 +45,7 @@ public class Model : MonoBehaviour
         
         EventManager.Subscribe(EventName.TurnOnPause, ChangeToMenuController);
         EventManager.Subscribe(EventName.TurnOnInventory, ChangeToMenuController);
+        EventManager.Subscribe(EventName.TurnOnUI, ChangeToMenuController);
         
         EventManager.Subscribe(EventName.ReturnGameMode, ChangeToGameController);
     }
@@ -74,6 +79,7 @@ public class Model : MonoBehaviour
 
     private void ChangeToMenuController(params object[] parameters)
     {
+        _actualDir = Vector3.zero;
         _activeController = _possibleControllers[ControllerName.InMenu];
     }
 

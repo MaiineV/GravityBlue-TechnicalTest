@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class UIInvetory : MonoBehaviour
 {
-    private readonly UIItem[,] _uiInventory = new UIItem[5, 4];
+    private readonly UIItem[] _uiInventory = new UIItem[20];
 
     [SerializeField] private UIPopUp _itemPopUp;
     [SerializeField] private Inventory _inventory;
@@ -14,24 +13,23 @@ public class UIInvetory : MonoBehaviour
     [SerializeField] private bool _isShopUI;
     [SerializeField] private bool _isPlayerInventory;
 
-    private int _actualXIndex, _actualYIndex;
+    private int _actualIndex;
 
     private void OnEnable()
     {
         _itemPopUp.gameObject.SetActive(false);
     }
 
-    public void AddUIItem(int xIndex, int yIndex, UIItem item)
+    public void AddUIItem(int index, UIItem item)
     {
-        _uiInventory[xIndex, yIndex] = item;
+        _uiInventory[index] = item;
     }
 
-    public void SetPopUp(int xIndex, int yIndex)
+    public void SetPopUp(int index)
     {
-        _actualXIndex = xIndex;
-        _actualYIndex = yIndex;
+        _actualIndex = index;
         
-        var selectedItem = _inventory.GetItem(xIndex, yIndex);
+        var selectedItem = _inventory.GetItem(index);
         _itemPopUp.gameObject.SetActive(true);
         _itemPopUp.SetInfo(selectedItem.itemName, _isPlayerInventory ? selectedItem.sellCost : selectedItem.buyCost);
         
@@ -62,18 +60,31 @@ public class UIInvetory : MonoBehaviour
         _itemPopUp.gameObject.SetActive(false);
     }
 
-    public void ChangeUIImage(int xIndex, int yIndex, Sprite item = null)
+    public void ChangeUIImage(int index, Sprite item = null)
     {
-        _uiInventory[xIndex, yIndex].ChangeImage(item);
+        _uiInventory[index].ChangeImage(item);
     }
 
     private void SellItem()
     {
-        _inventory.RemoveItem(_actualXIndex, _actualYIndex);
+        _inventory.RemoveItem(_actualIndex);
     }
 
     private void BuyItem()
     {
         
+    }
+    
+    public void SetStoreOwner(Inventory newOwner)
+    {
+        _inventory = newOwner;
+    }
+
+    public void CopyInfoFromInventory()
+    {
+        for (var i = 0; i < 20; i++)
+        {
+            _uiInventory[i].ChangeImage(_inventory[i] ? _inventory[i].inventoryImage : null);
+        }
     }
 }
